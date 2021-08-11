@@ -24,7 +24,7 @@ has_many :purchases
 | category_id           | integer    | null: false                    |
 | condition_id          | integer    | null: false                    |
 | shipping_charge_id    | integer    | null: false                    |
-| prefectur_id          | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
 | day_to_ship_id        | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
@@ -38,11 +38,11 @@ belongs_to :user
 | --------------------- | ---------- | ------------------------------ |
 | postal_code           | string     | null: false                    |
 | city                  | string     | null: false                    |
-| addresses             | string     | null: false                    |
+| address               | string     | null: false                    |
 | building              | string     |                                |
 | phone_number          | string     | null: false                    |
 | purchase              | references | null: false, foreign_key: true |
-| prefectur_id          | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
 
 ### アソシエーション
 belongs_to :purchase
