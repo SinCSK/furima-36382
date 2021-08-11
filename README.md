@@ -30,21 +30,8 @@ has_many :comments
 | user                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
-has_many :comments
-has_many :credit_cards
 has_many :shipping_addresses
 belongs_to :user
-
-## commentsテーブル
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| text                  | text       | null: false                    |
-| user                  | references | null: false, foreign_key: true |
-| item                  | references | null: false, foreign_key: true |
-
-### アソシエーション
-belongs_to :user
-belongs_to :item
 
 ## shipping_addressesテーブル
 | Column                | Type       | Options                        |
@@ -57,4 +44,14 @@ belongs_to :item
 | item                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
+belongs_to :item
+
+## purchasesテーブル
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| user                  | references | null: false, foreign_key: true |
+| item                  | references | null: false, foreign_key: true |
+
+### アソシエーション
+belongs_to :user
 belongs_to :item
