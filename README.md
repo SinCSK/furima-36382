@@ -14,7 +14,7 @@
 
 ### アソシエーション
 has_many :items
-has_many :comments
+has_many :purchases
 
 ## itemsテーブル
 | Column                | Type       | Options                        |
@@ -23,14 +23,15 @@ has_many :comments
 | item_show             | text       | null: false                    |
 | category_id           | integer    | null: false                    |
 | condition_id          | integer    | null: false                    |
-| shipping_charges_id   | integer    | null: false                    |
+| shipping_charge_id    | integer    | null: false                    |
 | prefectur_id          | integer    | null: false                    |
-| days_to_ship_id       | integer    | null: false                    |
+| day_to_ship_id        | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
+| purchase              | references | null: false, foreign_key: true |
 
 ### アソシエーション
-has_many :shipping_addresses
+belongs_to :purchases
 belongs_to :user
 
 ## shipping_addressesテーブル
@@ -41,17 +42,17 @@ belongs_to :user
 | addresses             | string     | null: false                    |
 | building              | string     |                                |
 | phone_number          | string     | null: false                    |
-| item                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
-belongs_to :item
+has_many :purchases
 
 ## purchasesテーブル
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | user                  | references | null: false, foreign_key: true |
-| item                  | references | null: false, foreign_key: true |
+| shipping_address      | references | null: false, foreign_key: true |
 
 ### アソシエーション
 belongs_to :user
 belongs_to :item
+has_many :items
