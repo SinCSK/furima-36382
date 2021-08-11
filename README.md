@@ -56,4 +56,4 @@ belongs_to :purchase
 ### アソシエーション
 belongs_to :user
 belongs_to :item
-has_one :shipping_addresse
+has_one :shipping_address
