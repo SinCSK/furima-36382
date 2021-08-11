@@ -30,7 +30,7 @@ has_many :purchases
 | user                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
-has_many :purchases
+has_one :purchases
 belongs_to :user
 
 ## shipping_addressesテーブル
@@ -42,6 +42,7 @@ belongs_to :user
 | building              | string     |                                |
 | phone_number          | string     | null: false                    |
 | purchase              | references | null: false, foreign_key: true |
+| item                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
 belongs_to :purchase
@@ -54,5 +55,5 @@ belongs_to :purchase
 
 ### アソシエーション
 belongs_to :user
-has_one  :items
-has_many :shipping_addresses
+belongs_to :item
+has_one :shipping_addresses
