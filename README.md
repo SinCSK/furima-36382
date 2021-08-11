@@ -1,24 +1,79 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| nickname              | string  | null: false |
+| email                 | string  | null: false |
+| password              | string  | null: false |
+| password-confirmation | string  | null: false |
+| last_name             | string  | null: false |
+| first_name            | string  | null: false |
+| last_name_kana        | string  | null: false |
+| first_name_kana       | string  | null: false |
+| birth_date_year       | integer | null: false |
+| birth_date_month      | integer | null: false |
+| birth_date_day        | integer | null: false |
 
-Things you may want to cover:
+### アソシエーション
+has_many :items
+has_many :comments
 
-* Ruby version
+## itemsテーブル
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| item_name             | string     | null: false                    |
+| item_show             | text       | null: false                    |
+| category              | string     | null: false                    |
+| condition             | string     | null: false                    |
+| shipping_charges      | string     | null: false                    |
+| delivery_source       | string     | null: false                    |
+| days_to_ship          | string     | null: false                    |
+| price                 | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
-* System dependencies
+### アソシエーション
+has_many :comments
+has_many :credit_cards
+has_many :shipping_addresses
+belongs_to :user
 
-* Configuration
+## commentsテーブル
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| text                  | text       | null: false                    |
+| user                  | references | null: false, foreign_key: true |
+| item                  | references | null: false, foreign_key: true |
 
-* Database creation
+### アソシエーション
+belongs_to :user
+belongs_to :item
 
-* Database initialization
+## credit_cardsテーブル
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| cred_number           | integer    | null: false                    |
+| date_of_expiry_month  | integer    | null: false                    |
+| date_of_expiry_year   | integer    | null: false                    |
+| security_code         | integer    | null: false                    |
+| item                  | references | null: false, foreign_key: true |
 
-* How to run the test suite
+### アソシエーション
+belongs_to :item
+has_many :shipping_addresses
 
-* Services (job queues, cache servers, search engines, etc.)
+## shipping_addressesテーブル
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| postal_code           | string     | null: false                    |
+| prefectur             | string     | null: false                    |
+| city                  | string     | null: false                    |
+| addresses             | string     | null: false                    |
+| building              | string     |                                |
+| phone_number          | integer    | null: false                    |
+| item                  | references | null: false, foreign_key: true |
+| credit_card           | references | null: false, foreign_key: true |
 
-* Deployment instructions
-
-* ...
+### アソシエーション
+belongs_to :item
+belongs_to :credit_cards
