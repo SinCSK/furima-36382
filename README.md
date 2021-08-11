@@ -28,10 +28,9 @@ has_many :purchases
 | day_to_ship_id        | integer    | null: false                    |
 | price                 | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
-| purchase              | references | null: false, foreign_key: true |
 
 ### アソシエーション
-belongs_to :purchases
+has_many :purchases
 belongs_to :user
 
 ## shipping_addressesテーブル
@@ -42,17 +41,18 @@ belongs_to :user
 | addresses             | string     | null: false                    |
 | building              | string     |                                |
 | phone_number          | string     | null: false                    |
+| purchase              | references | null: false, foreign_key: true |
 
 ### アソシエーション
-has_many :purchases
+belongs_to :purchase
 
 ## purchasesテーブル
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | user                  | references | null: false, foreign_key: true |
-| shipping_address      | references | null: false, foreign_key: true |
+| item                  | references | null: false, foreign_key: true |
 
 ### アソシエーション
 belongs_to :user
-belongs_to :item
-has_many :items
+has_one  :items
+has_many :shipping_addresses
