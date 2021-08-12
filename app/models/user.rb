@@ -9,14 +9,14 @@ class User < ApplicationRecord
   VALID_PASSWORD_REGEX =/\A(?=.*?[a-zA-Z])(?=.*?[\d])\w{6,100}\z/
 
   validates :nickname, presence: true
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: ". Include both letters and numbers"}
 
-  with_options presence: true, format: { with: VALID_ZENKAKU_REGEX } do
+  with_options presence: true, format: { with: VALID_ZENKAKU_REGEX, message: ". Input full-width characters"} do
     validates :last_name, presence: true
     validates :first_name, presence: true
   end
 
-  with_options presence: true, format: { with: VALID_KATAKANA_REGEX } do
+  with_options presence: true, format: { with: VALID_KATAKANA_REGEX, message: ". Input full-width katakana characters"} do
     validates :last_name_kana
     validates :first_name_kana
   end
