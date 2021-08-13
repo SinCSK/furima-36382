@@ -1,10 +1,7 @@
 FactoryBot.define do
   factory :user do
-    #transient do
-      #person { Gimei.name }
-    #end
     nickname {"test"}
-    email {"test@com"}
+    email {Faker::Internet.free_email}
     password {"A00000"}
     password_confirmation {password}
     last_name {"田中"}
