@@ -1,12 +1,12 @@
 class Item < ApplicationRecord
   validates :item_name, presence: true
-  validates :item_show, precence: true
-  validates :category_id, precence: true
-  validates :condition_id, precence: true
-  validates :shipping_charge_id, precence: true
-  validates :prefecture_id, precence: true
-  validates :day_to_ship_id, precence: true
-  validates :price, precence: true
+  validates :item_show, presence: true
+  validates :category_id, presence: true
+  validates :condition_id, presence: true
+  validates :shipping_charge_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :day_to_ship_id, presence: true
+  validates :price, presence: true
 
   belongs_to :user
   has_one_attached :image
