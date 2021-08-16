@@ -13,6 +13,9 @@ RSpec.describe Item, type: :model do
     end
     context "商品が登録できない場合" do
       it "imageが空では登録できないこと" do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it "item_nameが空では登録できないこと" do
         @item.item_name = ''
@@ -68,6 +71,21 @@ RSpec.describe Item, type: :model do
         @item.price = 'A300'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+      it "priceは全角文字では登録できないこと" do
+        @item.price = 'テスト'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+      it "priceは半角英語のみでは登録できないこと" do
+        @item.price = 'test'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is out of setting range")
+      end
+      it "ユーザー情報がない場合は登録できないこと" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
