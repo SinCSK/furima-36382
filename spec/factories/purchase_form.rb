@@ -1,9 +1,6 @@
 FactoryBot.define do
   factory :purchase_form do
-    card_number {"424242424242"}
-    card_exp_month {"3"}
-    card_exp_year {"23"}
-    card_cvc {"123"}
+    token {"tok_a5508b86f887462bf3184e17aea7"}
     postal_code {"222-2222"}
     city {"テストシティ"}
     address {"テスト1-2-3"}

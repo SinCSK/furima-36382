@@ -18,25 +18,10 @@ RSpec.describe PurchaseForm, type: :model do
       end
     end
     context "商品購入ができない場合" do
-      it "card_numberが空だと登録できないこと" do
-        @purchase_form.card_number = ''
+      it "tokenが空だと登録できないこと" do
+        @purchase_form.token = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Card number can't be blank")
-      end
-      it "card_exp_monthが空だと登録できないこと" do
-        @purchase_form.card_exp_month = ''
-        @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Card exp month can't be blank")
-      end
-      it "card_exp_yearが空だと登録できないこと" do
-        @purchase_form.card_exp_year = ''
-        @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Card exp year can't be blank")
-      end
-      it "card_cvcが空だと登録できないこと" do
-        @purchase_form.card_cvc = ''
-        @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Card cvc can't be blank")
+        expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
       end
       it "postal_codeが空だと登録できないこと" do
         @purchase_form.postal_code = ''
