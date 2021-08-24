@@ -7,7 +7,5 @@ FactoryBot.define do
     building {"テストビル"}
     phone_number {"09000001111"}
     prefecture_id { 2 }
-    user_id { 1 }
-    item_id { 1 }
   end
 end
