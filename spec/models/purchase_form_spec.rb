@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @purchase_form = FactoryBot.build(:purchase_form)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @purchase_form = FactoryBot.build(:purchase_form,user_id: user.id, item_id: item.id)
+    sleep 0.1
   end
 
   describe '商品購入機能' do
@@ -61,8 +64,13 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Phone number . Input only number")
       end
-      it "phone_numberが10桁以上11桁以内でないと登録できないこと" do
+      it "phone_numberが9桁以下だと登録できないこと" do
         @purchase_form.phone_number = '123456789'
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("Phone number . Input only number")
+      end
+      it "phone_numberが12桁以上だと登録できないこと" do
+        @purchase_form.phone_number = '123456789012'
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Phone number . Input only number")
       end
