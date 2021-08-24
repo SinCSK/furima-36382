@@ -1,7 +1,7 @@
 class ShippingAddressesController< ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
-  before_action :move_to_index
+  before_action :move_to_root_path, only: :index
 
   def index
     @purchase = PurchaseForm.new
@@ -37,10 +37,10 @@ class ShippingAddressesController< ApplicationController
     )
   end
 
-  def move_to_index
+  def move_to_root_path
     item = Item.find(params[:item_id])
-    unless user_signed_in? && current_user.id != item.user_id && item.purchase.present?
-      redirect_to action: :index
+    unless item.purchase.blank? && user_signed_in? && current_user.id != item.user_id
+      redirect_to root_path
     end
   end
 
